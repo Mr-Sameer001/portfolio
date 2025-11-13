@@ -1,0 +1,1972 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sameer Biswas - UI/UX & WordPress Developer Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ✅ Default = DARK THEME */
+        :root {
+            --primary: #ad8469;
+            --primary-dark: #0095b8;
+            --secondary: #d7d4be;
+            --accent: #fff;
+            --accent-light: #ff8787;
+            --success: #10b981;
+            --danger: #ef4444;
+
+            /* ✅ Dark Mode Colors */
+            --dark-bg: #0a0e27;
+            --darker-bg: #050812;
+            --light-text: #e2e8f0;
+            --muted-text: #cbd5e1;
+            --card-bg: #1a1f3a;
+            --card-border: #2d3561;
+        }
+
+        /* ✅ Light Theme */
+        html[data-theme="light"] {
+            --dark-bg: #ffffff;
+            --darker-bg: #f5f5f5;
+            --light-text: #222222;
+            --muted-text: #555555;
+            --card-bg: #ffffff;
+            --card-border: #cccccc;
+        }
+
+        /* ✅ Using "dark" attribute is optional but kept for clarity */
+        html[data-theme="dark"] {
+            /* Default dark mode values already applied in :root */
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, #0f1a3d 100%);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Enhanced navbar with gradient and animations */
+        .navbar {
+            background: linear-gradient(90deg, rgba(10, 14, 39, 0.95) 0%, rgba(0, 180, 219, 0.1) 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary);
+            padding: 1rem 0;
+            box-shadow: 0 8px 32px rgba(0, 180, 219, 0.15);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .nav-link {
+            color: var(--light-text) !important;
+            font-weight: 600;
+            margin-left: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary) !important;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero section with animated gradients and floating elements */
+        .hero {
+            background: linear-gradient(135deg, rgba(0, 180, 219, 0.15) 0%, rgba(255, 107, 107, 0.1) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            /* padding: 120px 0 80px; */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 180, 219, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -150px;
+            right: -100px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 6rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ad8469, #ffffff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .btn-color {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--muted-text);
+            margin-bottom: 2rem;
+            animation: slideUp 0.8s ease-out 0.2s backwards;
+            font-weight: 500;
+        }
+
+        .hero-contact {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease-out 0.4s backwards;
+        }
+
+        .contact-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            /* border: 2px solid #fff; */
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-badge:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 180, 219, 0.3);
+        }
+
+        .contact-badge i {
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #999795, #7d6161, #ad8787);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 12px 35px rgba(0, 180, 219, 0.3);
+            animation: slideUp 0.8s ease-out 0.4s backwards;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 180, 219, 0.5);
+            color: white;
+        }
+
+        /* Section styling with enhanced animations */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title .underline {
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            margin: 1.5rem auto;
+            border-radius: 3px;
+            animation: scaleX 0.8s ease-out;
+        }
+
+        /* Title */
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .section-title .underline {
+            width: 100%;
+            height: 1px;
+            background: #000;
+            margin-top: 8px;
+        }
+
+        /* Layout */
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 60px;
+            gap: 40px;
+        }
+
+        /* Image Circles */
+        .about-image {
+            position: relative;
+            width: 250px;
+            height: 250px;
+        }
+
+        .circle-top {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(180deg, #ff4500 0%, #fcd2c2 100%);
+        }
+
+        .circle-bottom {
+            position: absolute;
+            width: 85%;
+            height: 85%;
+            border-radius: 50%;
+            background: #000;
+            bottom: -30%;
+            left: 8%;
+        }
+
+        /* Text */
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* Stats */
+        .about-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .about-stats .stat h3 {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .about-stats .stat p {
+            font-size: 14px;
+        }
+
+        /* Language Buttons */
+        .language {
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .language i {
+            color: #ff4500;
+            font-size: 22px;
+        }
+
+        .language button {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .language button:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-image {
+                margin-bottom: 30px;
+            }
+
+            .about-stats {
+                justify-content: center;
+            }
+        }
+
+        /* Skill cards with hover animations and vibrant colors */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, rgba(0, 180, 219, 0.1) 0%, rgba(255, 107, 107, 0.05) 100%);
+            border: 2px solid var(--card-border);
+            padding: 2.5rem;
+            border-radius: 15px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(0, 180, 219, 0.2) 0%, rgba(255, 107, 107, 0.1) 100%);
+            box-shadow: 0 20px 50px rgba(0, 180, 219, 0.3);
+        }
+
+        .skill-card:hover::before {
+            left: 100%;
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        .skill-card h4 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--muted-text);
+            border-bottom: 1px solid rgba(0, 180, 219, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-list li:hover {
+            color: var(--primary);
+            padding-left: 2rem;
+        }
+
+        /* Experience timeline with gradient indicators */
+        .experience-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            padding-left: 3rem;
+            position: relative;
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0;
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            border: 4px solid var(--darker-bg);
+            box-shadow: 0 0 0 3px var(--primary), 0 4px 15px rgba(0, 180, 219, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -0.9rem;
+            top: 3rem;
+            width: 2px;
+            height: 3rem;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+        } */
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-item h4 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .timeline-position {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--light-text);
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-company {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item ul {
+            list-style: none;
+        }
+
+        .timeline-item li {
+            padding: 0.6rem 0;
+            color: var(--muted-text);
+            position: relative;
+            padding-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .timeline-item li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Project cards with hover scale and gradient borders */
+        .projects-section {
+            background: linear-gradient(135deg, rgba(0, 180, 219, 0.05) 0%, rgba(255, 107, 107, 0.02) 100%);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(0, 180, 219, 0.1) 0%, rgba(255, 107, 107, 0.05) 100%);
+            border: 2px solid var(--card-border);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-20px) scale(1.03);
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(0, 180, 219, 0.2) 0%, rgba(255, 107, 107, 0.1) 100%);
+            box-shadow: 0 25px 60px rgba(0, 180, 219, 0.4);
+        }
+
+        .project-image {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h5 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .project-content p {
+            color: var(--muted-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .tag {
+            background: rgba(0, 180, 219, 0.2);
+            color: var(--primary);
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 1px solid var(--primary);
+        }
+
+        .tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Education cards with enhanced styling */
+        .education-card {
+            background: linear-gradient(135deg, rgba(0, 180, 219, 0.1) 0%, rgba(255, 107, 107, 0.05) 100%);
+            border-left: 5px solid;
+            border-image: linear-gradient(180deg, var(--primary), var(--accent)) 1;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .education-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(0, 180, 219, 0.2);
+        }
+
+        .education-card h5 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 0.7rem;
+            color: var(--primary);
+        }
+
+        .education-degree {
+            font-size: 1rem;
+            color: var(--light-text);
+            font-weight: 700;
+        }
+
+        .education-institution {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+            margin: 0.5rem 0;
+        }
+
+        .education-year {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Contact section with vibrant gradient and animated elements */
+        .contact-section {
+            background: linear-gradient(135deg, rgba(0, 180, 219, 0.2) 0%, rgba(255, 107, 107, 0.15) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -300px;
+            right: -200px;
+            animation: float 12s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .contact-boxes {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-box {
+            background: rgba(0, 180, 219, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--primary);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .contact-box:hover {
+            transform: translateY(-15px) scale(1.05);
+            background: rgba(255, 107, 107, 0.2);
+            border-color: var(--accent);
+            box-shadow: 0 20px 50px rgba(0, 180, 219, 0.3);
+        }
+
+        .contact-box i {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        .contact-box h5 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--light-text);
+        }
+
+        .contact-box a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .contact-box a:hover {
+            color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: rgba(10, 14, 39, 0.9);
+            border-top: 2px solid var(--primary);
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        footer p {
+            margin: 0.7rem 0;
+            font-weight: 500;
+        }
+
+        footer .heart {
+            color: var(--accent);
+        }
+
+        /* --- NEW STYLES FOR SKILLS SECTION --- */
+        /* New styles for Education & Skills redesign */
+        .education-timeline {
+            position: relative;
+            padding-left: 4rem;
+        }
+
+        .education-timeline-item {
+            margin-bottom: 2.5rem;
+            position: relative;
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        .education-timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0;
+            width: 1.2rem;
+            height: 1.2rem;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--darker-bg);
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        .education-timeline-item h5 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--light-text);
+            margin-bottom: 0.4rem;
+        }
+
+        .timeline-year {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .timeline-description {
+            color: var(--muted-text);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Skills Card Grid */
+        .skills-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-icon-card {
+            background: linear-gradient(135deg, rgba(0, 180, 219, 0.08) 0%, rgba(255, 107, 107, 0.03) 100%);
+            border: 2px solid var(--card-border);
+            padding: 2rem 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: fadeInUp 0.8s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .skill-icon-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(0, 180, 219, 0.15) 0%, rgba(255, 107, 107, 0.08) 100%);
+            box-shadow: 0 15px 40px rgba(0, 180, 219, 0.25);
+        }
+
+        .skill-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .skill-icon-wrapper.figma {
+            background: linear-gradient(135deg, #f26ef7 0%, #a78bfa 100%);
+        }
+
+        .skill-icon-wrapper.photoshop {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+        }
+
+        .skill-icon-wrapper.wordpress {
+            background: linear-gradient(135deg, #0073aa 0%, #21759b 100%);
+        }
+
+        .skill-icon-wrapper.javascript {
+            background: linear-gradient(135deg, #f7df1e 0%, #ffd700 100%);
+            color: #333;
+        }
+
+        .skill-icon-wrapper.HTML {
+            background: linear-gradient(135deg, #E44D26 0%, #F16529 100%);
+        }
+
+        .skill-icon-wrapper.CSS {
+            background: linear-gradient(135deg, #264DE4 0%, #2965F1 100%);
+        }
+
+        .skill-icon-wrapper.My-Sql {
+            background: linear-gradient(135deg, #00758F 0%, #F29111 100%);
+        }
+
+        .skill-icon-wrapper.Bootstrap {
+            background: linear-gradient(135deg, #563d7c 0%, #7952b3 100%);
+        }
+
+        .skill-icon-wrapper.php {
+            background: linear-gradient(135deg, #777BB3 0%, #8892BF 100%);
+        }
+
+        .skill-icon-card h6 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--light-text);
+            margin: 0;
+        }
+
+        .skill-rating {
+            display: flex;
+            gap: 0.4rem;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .dot.filled {
+            background: var(--accent);
+            box-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
+        }
+
+        .dot.empty {
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid rgba(255, 107, 107, 0.4);
+        }
+
+        .skill-icon-card:hover .dot.filled {
+            transform: scale(1.2);
+            box-shadow: 0 0 12px rgba(255, 107, 107, 0.8);
+        }
+
+        /* --- END NEW STYLES FOR SKILLS SECTION --- */
+
+
+        /* Enhanced animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) translateX(0px);
+            }
+
+            50% {
+                transform: translateY(-30px) translateX(15px);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 180, 219, 0.7);
+            }
+
+            50% {
+                box-shadow: 0 0 0 15px rgba(0, 180, 219, 0);
+            }
+        }
+
+        @keyframes scaleX {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100px;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%);
+            }
+
+            100% {
+                transform: translateX(100%) translateY(100%);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-content {
+                text-align: center !important;
+
+            }
+
+            .hero-contact {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .contact-badge {
+                justify-content: center;
+                width: 100%;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .skill-card:hover,
+            .project-card:hover {
+                transform: translateY(-10px);
+            }
+
+            .timeline-item {
+                padding-left: 1rem;
+            }
+
+            .timeline-item::before {
+                left: -2.5rem;
+                width: 2rem;
+                height: 2rem;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Responsive adjustments for the new skills section */
+            .skills-card-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .skill-icon-wrapper {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+
+            .skill-icon-card h6 {
+                font-size: 1rem;
+            }
+
+            .skill-rating .dot {
+                width: 10px;
+                height: 10px;
+            }
+
+            /* Responsive adjustments for the new education timeline */
+            .education-timeline {
+                margin-bottom: 3rem;
+                padding-left: 4rem;
+            }
+
+            .skill-icon-wrapper {
+                width: 70px;
+                height: 70px;
+                font-size: 2rem;
+            }
+
+            .padding-0 {
+                --bs-gutter-x: -4.5rem;
+            }
+
+            .padding-style {
+                padding: 0px !important;
+
+            }
+
+            .top-style {
+                margin-top: 11px !important;
+            }
+        }
+    </style>
+    <style>
+        #work-process .work-heading {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        #work-process .work-desc {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* Grid */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            #work-process .row {
+                flex-direction: column;
+            }
+
+            .work-heading,
+            .work-desc {
+                text-align: center;
+            }
+        }
+
+        /* Base styles */
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+            float: right;
+            filter: brightness(0.8);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Tablet view (max-width: 992px) */
+        @media (max-width: 992px) {
+            .hero-image img {
+                width: 60%;
+            }
+        }
+
+        /* Mobile view (max-width: 768px) */
+        @media (max-width: 768px) {
+            .hero-image img {
+                width: 100%;
+                height: 100vh;
+                /* make it shorter */
+                float: none;
+                object-position: center;
+                position: relative;
+            }
+        }
+
+        /* Extra small devices (max-width: 480px) */
+        @media (max-width: 480px) {
+            .hero-image img {
+                height: 100vh;
+                object-fit: cover;
+                width: 100%;
+            }
+        }
+
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .about-pic img {
+            width: 100%;
+            max-width: 380px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-code"></i> Sameer Biswas
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- <button id="themeToggle" class="btn btn-outline-light ms-3">
+                🌙 Dark Mode
+            </button> -->
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="#education">Education</a></li> -->
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Sameer Biswas</h1>
+                <p class="subtitle">Full Stack Web Developer (WordPress & PHP Specialist)</p>
+
+                <div class="hero-contact">
+                    <div class="contact-badge">
+                        <i class="fas fa-phone"></i>
+                        <span> <a class="btn-color" href="tel:+917455973807">+917455973807</a>
+                        </span>
+                    </div>
+                    <div class="contact-badge">
+                        <i class="fas fa-envelope"></i>
+                        <span> <a class="btn-color"
+                                href="mailto:biswassameer291@gmail.com">biswassameer291@gmail.com</a>
+                        </span>
+                    </div>
+                    <div class="contact-badge">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Uttarakhand, India</span>
+                    </div>
+                </div>
+
+                <a href="documents/Sameer_Biswas_CV_2025.pdf" class="cta-button" target="_blank"
+                    rel="noopener noreferrer">Get In Touch</a>
+            </div>
+        </div>
+
+
+        <!-- Right Side: Hero Image -->
+        <div class="hero-image">
+            <img src="images/sameer-profile.png" alt="Sameer Biswas - Profile" />
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title"
+                style="text-align: left; display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+                <div>
+                    <h2 style="text-align: left; margin-bottom: 0;">About Us</h2>
+                </div>
+                <span style="font-size: 1.5rem; color: var(--accent); font-weight: 800;">(01)</span>
+            </div>
+            <div style="border-top: 2px solid var(--card-border); margin-bottom: 3rem;"></div>
+
+            <div class="about-content">
+                <div class="about-pic">
+                    <!-- <div class="circle-top"></div>
+                    <div class="circle-bottom"></div> -->
+                    <img src="images/about-pic.png" alt="Sameer Biswas - Profile" />
+
+                </div>
+
+                <div class="about-text">
+                    <p>
+                        I'm a passionate WordPress Developer with 2+ years of experience in crafting responsive and
+                        high-performance websites.
+                        With expertise in WooCommerce, custom themes, and modern frontend technologies, I've
+                        successfully delivered eCommerce,
+                        MLM, and business websites that not only look great but also drive results. My approach combines
+                        technical excellence
+                        with user-focused design to create digital experiences that clients and users love.
+                    </p>
+                    <p>
+                        Whether it's optimizing for SEO, building custom WooCommerce solutions, or designing intuitive
+                        user interfaces,
+                        I bring creativity and technical expertise to every project. I'm dedicated to staying current
+                        with the latest web
+                        technologies and best practices to ensure my clients get the best possible digital solutions.
+                    </p>
+
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>02+</h3>
+                            <p>Years of Experience</p>
+                        </div>
+                        <div class="stat">
+                            <h3>20+</h3>
+                            <p>Happy Clients</p>
+                        </div>
+                        <div class="stat">
+                            <h3>25+</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                    </div>
+
+                    <div class="language">
+                        <i class="fa-solid fa-language"></i>
+                        <span>Language:</span>
+                        <button>English</button>
+                        <button>Hindi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills and Education Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-title"
+                style="text-align: left; display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+                <div>
+                    <h2 style="text-align: left; margin-bottom: 0;">Education & Skills</h2>
+                </div>
+                <span style="font-size: 1.5rem; color: var(--accent); font-weight: 800;">(02)</span>
+            </div>
+            <div style="border-top: 2px solid var(--card-border); margin-bottom: 3rem;"></div>
+
+            <div class="row">
+                <!-- Education Timeline (Left Side) -->
+                <div class="col-12 col-lg-4">
+                    <div class="education-timeline">
+                        <div class="education-timeline-item">
+                            <h5 class="timeline-title">Diploma in Computer Science</h5>
+                            <p class="timeline-year">2020 - 2022</p>
+                            <p class="timeline-description">Government Polytechnic Khotabagh, Nainital.<br> computer
+                                science and engineering.</p>
+                        </div>
+
+                        <div class="education-timeline-item">
+                            <h5 class="timeline-title">Graphic Design & UI/UX</h5>
+                            <p class="timeline-year">Simplilearn Upskill</p>
+                            <p class="timeline-description">Advanced design principles, user experience design, and
+                                interface creation mastery.</p>
+                        </div>
+
+                        <div class="education-timeline-item">
+                            <h5 class="timeline-title">Web Technologies</h5>
+                            <p class="timeline-year">Udemy Certification</p>
+                            <p class="timeline-description">CSS, Bootstrap, JavaScript, and PHP comprehensive training
+                                and certifications.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Grid (Right Side) -->
+                <div class=" col-12 col-lg-8">
+                    <div class="skills-card-grid">
+                        <!-- Figma -->
+                        <div class="skill-icon-card">
+                            <div class="skill-icon-wrapper figma">
+                                <i class="fab fa-figma"></i> <!-- Changed to fab for Font Awesome -->
+                            </div>
+                            <h6>Figma</h6>
+                            <div class="skill-rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot empty"></span>
+                                <span class="dot empty"></span>
+                                <span class="dot empty"></span>
+                            </div>
+                        </div>
+
+                        <!-- WooCommerce -->
+                        <div class="skill-icon-card">
+                            <div class="skill-icon-wrapper ">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="200" height="200">
+                                    <defs>
+                                        <linearGradient id="canvaGradient" x1="0" y1="0" x2="1" y2="1">
+                                            <stop offset="0%" stop-color="#00C4CC" />
+                                            <stop offset="100%" stop-color="#7B42F6" />
+                                        </linearGradient>
+                                    </defs>
+                                    <circle cx="256" cy="256" r="250" fill="url(#canvaGradient)" />
+                                    <text x="50%" y="58%" text-anchor="middle" font-family="Pacifico, cursive"
+                                        font-size="160" fill="#ffffff" dominant-baseline="middle">
+                                        Canva
+                                    </text>
+                                </svg>
+
+
+
+                            </div>
+                            <h6>Canva</h6>
+                            <div class="skill-rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </div>
+                        <!-- WordPress -->
+                        <div class="skill-icon-card">
+                            <div class="skill-icon-wrapper wordpress">
+                                <i class="fab fa-wordpress"></i> <!-- Changed to fab for Font Awesome -->
+                            </div>
+                            <h6>WordPress</h6>
+                            <div class="skill-rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </div>
+                        <!-- bootstrap -->
+                        <div class="skill-icon-card">
+                            <div class="skill-icon-wrapper Bootstrap">
+                                <i class="fab fa-bootstrap"></i>
+                            </div>
+                            <h6>Bootstrap</h6>
+                            <div class="skill-rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </div>
+                        <!-- HTML -->
+                        <div class="skill-icon-card">
+                            <div class="skill-icon-wrapper HTML">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                            <h6>HTML</h6>
+                            <div class="skill-rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </div>
+                        <!-- CSS -->
+                        <div class="skill-icon-card">
+                            <div class="skill-icon-wrapper CSS">
+                                <i class="fab fa-css3-alt"></i>
+                            </div>
+                            <h6>CSS</h6>
+                            <div class="skill-rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </div>
+                        <!-- JavaScript -->
+                        <div class="skill-icon-card">
+                            <div class="skill-icon-wrapper javascript">
+                                <i class="fab fa-js-square"></i> <!-- Changed to fab for Font Awesome -->
+                            </div>
+                            <h6>JavaScript</h6>
+                            <div class="skill-rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot empty"></span>
+                                <span class="dot empty"></span>
+                            </div>
+                        </div>
+
+
+
+                        <!-- PHP -->
+                        <div class="skill-icon-card">
+                            <div class="skill-icon-wrapper php">
+                                <i class="fab fa-php"></i>
+                            </div>
+                            <h6>PHP</h6>
+                            <div class="skill-rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot empty"></span>
+                            </div>
+                        </div>
+                        <!-- PHP -->
+                        <div class="skill-icon-card">
+                            <div class="skill-icon-wrapper My-Sql">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h6>My Sql</h6>
+                            <div class="skill-rating">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot empty"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="about-section" id="experience">
+        <div class="container">
+            <div class="section-title"
+                style="text-align: left; display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+                <div>
+                    <h2 style="text-align: left; margin-bottom: 0;">Professional Experience</h2>
+                </div>
+                <span style="font-size: 1.5rem; color: var(--accent); font-weight: 800;">(03)</span>
+            </div>
+            <div style="border-top: 2px solid var(--card-border); margin-bottom: 3rem;"></div>
+            <div class="row padding-0">
+                <div class="col-12 col-lg-8 mx-auto">
+                    <div class="experience-timeline">
+                        <div class="timeline-item">
+                            <h4>Current Position</h4>
+                            <div class="timeline-position">UI/UX Designer & WordPress Developer</div>
+                            <div class="timeline-company"><i class="fas fa-building"></i> Next Web Guru Techno Service,
+                                Uttarakhand</div>
+                            <div
+                                style="font-size: 0.95rem; color: var(--accent); margin-bottom: 1rem; font-weight: 700;">
+                                2023 - Present | 2+ Years of Experience</div>
+                            <ul class="padding-style">
+                                <li><strong>E-Commerce Development:</strong> Developed complete WooCommerce-based
+                                    eCommerce solutions with custom product, cart, checkout, and order flow optimization
+                                </li>
+                                <li><strong>MLM Platform Development:</strong> Built and optimized MLM systems,
+                                    integrating user tier logic, rewards features, and dynamic dashboards</li>
+                                <li><strong>Corporate Websites:</strong> Designed responsive business websites using
+                                    Astra and Elementor with CRM and form integrations</li>
+                                <li><strong>Blog Websites:</strong> Created SEO-optimized blog sites with filterable
+                                    layouts, author roles, and fast-loading design</li>
+                            </ul>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h4>Previous Role</h4>
+                            <div class="timeline-position">Web Development Intern</div>
+                            <div class="timeline-company"><i class="fas fa-building"></i> Next Web Guru Techno Service,
+                                Uttarakhand</div>
+                            <ul class="padding-style">
+                                <li>Worked on live projects including eCommerce, MLM, blogs, and corporate sites</li>
+                                <li>Designed UI/UX mockups using Figma, Canva, and Elementor</li>
+                                <li>Gained hands-on experience in WooCommerce and theme/plugin customization</li>
+                                <li>Handled MLM database logic with MySQL and PHP</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="work-process">
+        <div class="container">
+            <div class="section-title"
+                style="text-align: left; display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+                <div>
+                    <h2 style="text-align: left; margin-bottom: 0;">Work Process</h2>
+                </div>
+                <span style="font-size: 1.5rem; color: var(--accent); font-weight: 800;">(04)</span>
+            </div>
+            <div style="border-top: 2px solid var(--card-border); margin-bottom: 3rem;"></div>
+
+            <div class="row align-items-center">
+                <!-- Left Text -->
+                <div class="col-12 col-lg-5 mb-5 mb-lg-0">
+                    <h3 class="work-heading">From Idea to Implementation</h3>
+                    <p class="work-desc">
+                        My workflow merges creativity with logic — transforming ideas into functional and visually
+                        appealing
+                        experiences. I focus on detail, responsive layouts, and performance-driven development.
+                    </p>
+                    <p class="work-desc">
+                        Each project moves through research, planning, design, development, and deployment — ensuring
+                        every stage adds
+                        measurable value.
+                    </p>
+                </div>
+
+                <!-- Right Process Cards -->
+                <div class="col-12 col-lg-7">
+                    <div class="process-grid">
+                        <!-- Step 1 -->
+                        <div class="skill-icon-card top-style">
+                            <div class="skill-icon-wrapper javascript">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                            <h6>Research</h6>
+                            <div class="skill-rating">
+                                <p>Understanding user needs and setting clear project goals to create the perfect
+                                    foundation.</p>
+                            </div>
+                        </div>
+
+
+                        <!-- Step 2 -->
+                        <div class="skill-icon-card top-style">
+                            <div class="skill-icon-wrapper figma">
+                                <i class="fa-solid fa-paintbrush"></i>
+                            </div>
+                            <h6>Design</h6>
+                            <div class="skill-rating">
+                                <p>Crafting wireframes and layouts using clean, modern UI principles for smooth user
+                                    experiences.</p>
+
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="skill-icon-card">
+                            <div class="skill-icon-wrapper php">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <h6>Development</h6>
+                            <div class="skill-rating">
+                                <p>Building responsive interfaces with HTML, CSS, Bootstrap, PHP, and MySQL integration.
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="skill-icon-card">
+                            <div class="skill-icon-wrapper My-Sql">
+                                <i class="fa-solid fa-rocket"></i>
+                            </div>
+                            <h6>Launch</h6>
+                            <div class="skill-rating">
+                                <p>Testing, optimization, and deployment — ensuring everything performs perfectly.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Projects Section -->
+    <section class="projects-section" id="projects">
+        <div class="container">
+            <div class="section-title"
+                style="text-align: left; display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+                <div>
+                    <h2 style="text-align: left; margin-bottom: 0;">Featured Projects
+                    </h2>
+                </div>
+                <span style="font-size: 1.5rem; color: var(--accent); font-weight: 800;">(05)</span>
+            </div>
+            <div style="border-top: 2px solid var(--card-border); margin-bottom: 3rem;"></div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="project-content">
+                        <h5>E-Commerce Solutions</h5>
+                        <p>High-performance WooCommerce stores with custom product management, cart optimization, and
+                            seamless checkout experiences.</p>
+                        <div class="project-tags">
+                            <span class="tag">WooCommerce</span>
+                            <span class="tag">WordPress</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="project-content">
+                        <h5>MLM Platform Development</h5>
+                        <p>Complex MLM systems with user tier logic, commission tracking, reward systems, and
+                            comprehensive admin dashboards.</p>
+                        <div class="project-tags">
+                            <span class="tag">PHP</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">WordPress</span>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="project-content">
+                        <h5>Corporate Websites</h5>
+                        <p>Professional business websites with responsive design, CRM integration, contact forms, and
+                            lead management systems.</p>
+                        <div class="project-tags">
+                            <span class="tag">Elementor</span>
+                            <span class="tag">Astra</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <div class="project-content">
+                        <h5>SEO-Optimized Blogs</h5>
+                        <p>Fast-loading blog platforms with filterable layouts, author management, advanced taxonomy,
+                            and SEO best practices.</p>
+                        <div class="project-tags">
+                            <span class="tag">SEO</span>
+                            <span class="tag">Performance Tools</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="project-content">
+                        <h5>UI/UX Design</h5>
+                        <p>Custom design interfaces created with Figma and Photoshop, focusing on user experience and
+                            modern aesthetics.</p>
+                        <div class="project-tags">
+                            <span class="tag">Figma</span>
+                            <span class="tag">Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <div class="project-content">
+                        <h5>Custom Plugin Development</h5>
+                        <p>Custom WordPress plugins with ACF integration, custom post types, and specialized
+                            functionality for unique business needs.</p>
+                        <div class="project-tags">
+                            <span class="tag">WordPress</span>
+                            <span class="tag">ACF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-title"
+                style="text-align: left; display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+                <div>
+                    <h2 style="text-align: left; margin-bottom: 0;">Let's Work Together
+                    </h2>
+                </div>
+                <span style="font-size: 1.5rem; color: var(--accent); font-weight: 800;">(06)</span>
+            </div>
+            <div style="border-top: 2px solid var(--card-border); margin-bottom: 3rem;"></div>
+            <div class="contact-boxes">
+                <div class="contact-box">
+                    <i class="fas fa-phone"></i>
+                    <h5>Phone</h5>
+                    <a href="tel:+917455973807">+917455973807</a>
+                </div>
+                <div class="contact-box">
+                    <i class="fas fa-envelope"></i>
+                    <h5>Email</h5>
+                    <a href="mailto:biswassameer291@gmail.com">biswassameer291@gmail.com</a>
+                </div>
+                <div class="contact-box">
+                    <i class="fas fa-linkedin"></i>
+                    <h5>LinkedIn</h5>
+                    <a href="https://www.linkedin.com/in/sameer-biswas-b7056b318" target="_blank">Connect with me</a>
+                </div>
+                <div class="contact-box">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h5>Location</h5>
+                    <p style="margin: 0;">Uttarakhand, India</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Sameer Biswas. All rights reserved.</p>
+            <p>Crafted with <span class="heart"><i class="fas fa-heart"></i></span> by Sameer | UI/UX Designer &
+                WordPress Developer</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // ...existing inline script...
+    </script>
+
+    <!-- Added: load theme & site script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Smooth scrolling for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                const navbar = document.querySelector('.navbar-collapse');
+                if (navbar.classList.contains('show')) {
+                    navbar.classList.remove('show');
+                }
+            }
+        });
+    });
+
+    // Active navigation link highlighting
+    window.addEventListener('scroll', function () {
+        let current = '';
+        document.querySelectorAll('section').forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 60) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').slice(1) === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Intersection observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements in the skills and experience sections
+    document.querySelectorAll('.skill-card, .project-card, .education-card, .timeline-item, .education-timeline-item, .skill-icon-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+
+    // Navbar background on scroll
+    window.addEventListener('scroll', function () {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.style.boxShadow = '0 10px 40px rgba(0, 180, 219, 0.2)';
+        } else {
+            navbar.style.boxShadow = '0 8px 32px rgba(0, 180, 219, 0.15)';
+        }
+    });
+</script>
+
+</body>
+
+</html>
